@@ -7,6 +7,10 @@ response = requests.get(url, headers=headers)
 text = response.text
 
 soup = BeautifulSoup(text, "html.parser")
-test = soup.find("div", {"id": "topicsfb"})
-for item in test.find_all("li"):
+news_box = soup.find("div", {"id": "topicsfb"})
+for item in news_box.find_all("li"):
 	print (item.a.get_text())
+
+
+
+
