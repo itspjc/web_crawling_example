@@ -8,7 +8,6 @@
 
 ## Prerequisite
 
-
 In this example code, you need to install some python packages. If you have Anaconda distribution, you might not need to install these packages.
 
 ```
