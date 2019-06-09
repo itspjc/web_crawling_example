@@ -4,8 +4,12 @@ from selenium.webdriver.support.ui import Select
 from time import sleep
 import codecs
 
+# Windowsの場合
 path_chrome_driver = "C:/selenium/chromedriver.exe"
-#path_chrome_driver = "./chromedriver"
+
+
+# Macなどの場合
+# path_chrome_driver = "./chromedriver"
 url = "https://www.amazon.co.jp"
 
 book_list_file = codecs.open('book_list.csv', 'r', 'utf-8')
@@ -28,12 +32,15 @@ for line in book_list_file:
 
     dropdown_box = driver.find_element_by_id('searchDropdownBox')
     Select(dropdown_box).select_by_value('search-alias=stripbooks')
-    driver.find_element_by_id('twotabsearchtextbox').send_keys(search_isbn_code)
+    driver.find_element_by_id(
+        'twotabsearchtextbox').send_keys(search_isbn_code)
     sleep(2)
-    driver.find_element_by_xpath('//*[@id="nav-search"]/form/div[2]/div').click()
+    driver.find_element_by_xpath(
+        '//*[@id="nav-search"]/form/div[2]/div').click()
 
     sleep(2)
-    genre_text = driver.find_element_by_xpath('//*[@id="leftNavContainer"]/ul[1]/ul/div/li[1]/span/a').text
+    genre_text = driver.find_element_by_xpath(
+        '//*[@id="leftNavContainer"]/ul[1]/ul/div/li[1]/span/a').text
     print(genre_text)
     output.write(line[0] + ',' + line[1] + ',' + genre_text + '\n')
 
